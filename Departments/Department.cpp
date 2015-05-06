@@ -111,7 +111,6 @@ const int Department::get_head() {
 
 void Department::generate() {
     char alphanum[] = "abcdefghijklmnopqrstuvwxyz";
-    unsigned int seed = rand();
     for (int i = 0; i < 3; i++) {
         std::string s;
         for (int i = 0; i < 5; i++)
