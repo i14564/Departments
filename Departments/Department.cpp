@@ -1,9 +1,12 @@
 // Copyright 2015 <Artem Krinitsyn>
+
+#define _CRT_RAND_S
 #include "Department.h"
 #include "Exceptions.h"
 #include <string>
 #include <vector>
 #include <iostream>
+#include <cstdlib>
 
 Employee zEmpl;
 
@@ -111,19 +114,28 @@ const int Department::get_head() {
 
 void Department::generate() {
     char alphanum[] = "abcdefghijklmnopqrstuvwxyz";
+    unsigned int a[6] = {0};
     for (int i = 0; i < 3; i++) {
         std::string s;
-        for (int i = 0; i < 5; i++)
-            s += alphanum[rand() % sizeof(alphanum) - 1];
-        Employee a(s, 10000 + rand() % 10000, 25 + rand() % 40);
+        for (int i = 0; i < 5; i++) {
+            rand_s(&a[0]);
+            s += alphanum[a[0] % sizeof(alphanum) - 1];
+        }
+        rand_s(&a[1]);
+        rand_s(&a[2]);
+        Employee a(s, 10000 + a[1] % 10000, 25 + a[2] % 40);
         this->add(a);
     }
-    int b = rand() % 50;
+    int b = 0;
+    rand_s(&a[3]);
     std::string s;
-    for (int i = 0; i < 5; i++)
-        s += alphanum[rand() % sizeof(alphanum) - 1];
+    for (int i = 0; i < 5; i++) {
+        rand_s(&a[4]);
+        s += alphanum[a[4] % sizeof(alphanum) - 1];
+    }
     this->name = s;
-    this->id = rand() % 50;
+    rand_s(&a[5]);
+    this->id = a[5] % 100;
     this->head_id = 1;
     this->adjacent_department_id = b;
 }
@@ -213,7 +225,8 @@ const Employee Department::operator[](const int id) {
 }
 const int Department::get_Count() {
     int count = 0;
-    for (Department::const_iterator pos = this->begin(); pos != this->end(); ++pos) {
+    for (Department::const_iterator pos = this->begin();
+        pos != this->end(); ++pos) {
         ++count;
     }
     return count;
