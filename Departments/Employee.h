@@ -12,30 +12,30 @@ class Employee {
 
     void edit(const std::string name, const int salary, const int age);
 
-    const std::string get_name();
+    const std::string& get_name() const;
     void set_name(const std::string name);
 
-    const int get_id();
+    const int get_id() const;
     void set_id(const int id);
 
-    const int get_salary();
+    const int get_salary() const;
     void set_salary(const int salary);
 
     void add_vacation(const int days);
-    const int get_vacation();
+    const int get_vacation() const;
 
-    void print();
+    void print() const;
 
     void leave_of_absence(const int days);
 
-    friend bool operator ==(const Employee &a, const Employee &b);
-    Employee & operator =(const Employee &a);
+    friend bool operator ==(const Employee& a, const Employee& b);
+    Employee & operator =(const Employee& a);
 
  protected:
-     int id;
-     int salary;
-     int age;
-     int vacation;
-     std::string name;
+    int id;
+    int salary;
+    int age;
+    int vacation;
+    std::string name;
 };
 

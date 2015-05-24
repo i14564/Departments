@@ -12,44 +12,46 @@ class Department : public std::vector < Employee > {
     Department(const std::string name, const int id, const int adjacent_id);
     Department(const Department &a);
 
-    void add(const Employee &e);
+    void add(const Employee& e);
     void add(const std::string name, int salary, int age);
 
     void remove(const int id);
-    const bool has(const Employee &a);
+    bool has(const Employee &a) const;
 
     void set_name(const std::string name);
-    const std::string get_name();
+    const std::string& get_name() const;
 
     void set_id(const int id);
-    const int get_id();
+    int get_id() const;
 
-    void print();
+    void print() const;
 
     void set_head(const int id);
-    const int get_head();
+    int get_head() const;
 
     void generate();
 
     void set_adjacent(const int id);
-    const int get_adjacent();
+    int get_adjacent() const;
 
     void add_vacation(const int days);
     void leave_of_absence(const int days);
 
-    const int get_Count();
+    int get_Count() const;
 
-    Department & operator=(const Department &a);
+    Department & operator=(const Department& a);
 
-    friend Department operator+ (const Department &a, const Department &b);
-    friend bool operator == (const Department &a, const Department &b);
+    friend Department operator+ (const Department& a, const Department& b);
+    friend bool operator == (const Department& a, const Department& b);
 
-    friend Department operator + (const Department &a, const Employee &e);
-    const Employee operator[](const int id);
+    friend Department operator + (const Department& a, const Employee& e);
+    Employee* operator[](const int id);
+    const Employee* operator[](const int id) const;
 
  private:
     std::string name;
     int id;
     int head_id;
     int adjacent_department_id;
+    int cur_id;
 };

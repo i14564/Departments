@@ -38,9 +38,8 @@ void main() {
 
     try {
         a.add("Igor", 25000, 30);
-
         if (!(a == b)) {
-            a.add(b[2]);
+            a.add(*b[3]);
         }
         a.print();
     }

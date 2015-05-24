@@ -4,10 +4,6 @@
 #include <string>
 #include "Employee.h"
 
-
-EmployeeNotFound::EmployeeNotFound() {
-}
-
 EmployeeNotFound::EmployeeNotFound(const int id) {
     this->id = id;
 }
@@ -20,20 +16,13 @@ const char* EmployeeNotFound::what() const {
     return c_what;
 }
 
-EmployeeAlreadyExist::EmployeeAlreadyExist() {
-}
-
-EmployeeAlreadyExist::EmployeeAlreadyExist(const Employee &a) {
-    Employee out(a);
-    this->name = out.get_name();
+EmployeeAlreadyExist::EmployeeAlreadyExist(const Employee& a) {
+    this->out = "Employee " + a.get_name() + " already exist";
 }
 
 EmployeeAlreadyExist::~EmployeeAlreadyExist() {
 }
 
 const char* EmployeeAlreadyExist::what() const {
-    char* c_what = new char[40];
-    _snprintf(c_what, 40*sizeof(char),
-    "Employee %s not found", this->name.c_str());
-    return c_what;
+    return out.c_str();
 }

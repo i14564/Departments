@@ -22,7 +22,7 @@ Employee::Employee(std::string name, int salary, int age) {
     this->id = 0;
 }
 
-Employee::Employee(const Employee &a) {
+Employee::Employee(const Employee& a) {
     this->age = a.age;
     this->id = a.id;
     this->vacation = a.vacation;
@@ -37,7 +37,7 @@ void Employee::edit(std::string name, int salary, int age) {
     this->vacation = 0;
 }
 
-const int Employee::get_id() {
+const int Employee::get_id() const {
     return this->id;
 }
 
@@ -45,7 +45,7 @@ void Employee::set_id(const int id) {
     this->id = id;
 }
 
-void Employee::print() {
+void Employee::print() const {
     std::cout << "\n" << ' ' << this->name
                       << ' ' << this->salary
                       << "  " << this->age
@@ -57,7 +57,7 @@ void Employee::set_name(std::string name) {
     this->name = name;
 }
 
-const std::string Employee::get_name() {
+const std::string& Employee::get_name() const {
     return this->name;
 }
 
@@ -65,16 +65,15 @@ void Employee::set_salary(const int salary) {
     this->salary = salary;
 }
 
-const int Employee::get_salary() {
+const int Employee::get_salary() const {
     return this->salary;
 }
 
 void Employee::add_vacation(const int days) {
-    if (days > 0)
     this->vacation += days;
 }
 
-const int Employee::get_vacation() {
+const int Employee::get_vacation() const {
     return this->vacation;
 }
 
@@ -83,20 +82,20 @@ void Employee::leave_of_absence(const int days) {
         this->vacation -= days;
 }
 
-bool operator ==(const Employee &a, const Employee &b) {
-    if (b.age == a.age &&
-        b.vacation == a.vacation &&
-        b.name == a.name &&
-        b.salary == a.salary)
-        return true;
-    return false;
+bool operator ==(const Employee& a, const Employee& b) {
+    return (b.age == a.age &&
+            b.vacation == a.vacation &&
+            b.name == a.name &&
+            b.salary == a.salary);
 }
 
-Employee & Employee::operator= (const Employee &a) {
-    this->age = a.age;
-    this->id = a.id;
-    this->vacation = a.vacation;
-    this->name = a.name;
-    this->salary = a.salary;
+Employee & Employee::operator= (const Employee& a) {
+    if (this != &a) {
+        this->age = a.age;
+        this->id = a.id;
+        this->vacation = a.vacation;
+        this->name = a.name;
+        this->salary = a.salary;
+    }
     return *this;
 }
