@@ -37,7 +37,7 @@ void Employee::edit(std::string name, int salary, int age) {
     this->vacation = 0;
 }
 
-const int Employee::get_id() const {
+int Employee::get_id() const {
     return this->id;
 }
 
@@ -65,7 +65,7 @@ void Employee::set_salary(const int salary) {
     this->salary = salary;
 }
 
-const int Employee::get_salary() const {
+int Employee::get_salary() const {
     return this->salary;
 }
 
@@ -73,7 +73,7 @@ void Employee::add_vacation(const int days) {
     this->vacation += days;
 }
 
-const int Employee::get_vacation() const {
+int Employee::get_vacation() const {
     return this->vacation;
 }
 
